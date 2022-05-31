@@ -4,7 +4,7 @@ const csv = require("csvtojson");
 const { Parser } = require("json2csv");
 
 const CSV_File_Name = "data.csv";
-const WAIT_BETWEEN_MESSAGES = 2000; //the waiting time between messages,  increase it if your nternet connection is slow;
+const WAIT_BETWEEN_MESSAGES = 4000; //the waiting time between messages,  increase it if your nternet connection is slow;
 
 async function main() {
   const data = await csv().fromFile("data.csv");
@@ -50,7 +50,7 @@ async function main() {
         console.log(`Message sent to ${name} at row ${i + 1}`);
       } catch (err) {
         data[i].Status = "Failed";
-        console.log(`Failed to send message to ${name} at row ${i + 1}`);
+        console.error(`Failed to send message to ${name} at row ${i + 1}`);
         console.error(err);
 
         //save data so far
